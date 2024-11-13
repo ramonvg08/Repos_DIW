@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="estilos.css">
+
+        <!-- Agrega Firebase SDK -->
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+    
+    <script type="module" src="./js/firebase-config.js" defer></script>
+    <script type="module"src="./js/autenticacion.js" defer></script>
+
+    <main>
+        <h1>Formulario de Registro</h1>
+        <form id="registro-form">
+            <!-- Aquí iremos añadiendo cada campo -->
+            <!-- Nombre completo -->
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <!-- Correo electronico (con validacion de formato)-->
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduce un correo electrónico válido">
+
+            <!-- Direccion-->
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required autocomplete="street-address">
+            
+            <!-- Control de edad -->
+            <label for="nacimiento">Año de Nacimiento:</label>
+            <input type="number" id="nacimiento" name="nacimiento" min="1900" max="2023" required>
+
+            <!-- Contraseña: -->
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required autocomplete="new-password">
+           
+            <!-- Confirmar Contraseña: -->
+            <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required autocomplete="new-password">
+             
+            <!-- Boton para enviar -->
+            <button type="submit">Registrarse</button>
+
+
+
+
+        </form>
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a></p>
+    </main>
+</body>
+</html>

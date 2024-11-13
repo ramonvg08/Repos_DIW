@@ -47,15 +47,30 @@
             <!-- Confirmar Contraseña: -->
             <label for="confirmar-contrasena">Confirmar Contraseña:</label>
             <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required autocomplete="new-password">
+            
+            <!-- Checkbox para mostrar/ocultar contraseña -->
+            <input type="checkbox" id="mostrar-contrasena"> Mostrar Contraseña
              
             <!-- Boton para enviar -->
             <button type="submit">Registrarse</button>
-
-
-
-
         </form>
         <p>¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a></p>
+
+
+        <!-- Mostrar y ocultar contraseña -->
+        <script>
+            document.getElementById('mostrar-contrasena').addEventListener('change', function() {
+                const contrasena = document.getElementById('contrasena');
+                const confirmarContrasena = document.getElementById('confirmar-contrasena');
+                if (this.checked) {
+                    contrasena.type = 'text';
+                    confirmarContrasena.type = 'text';
+                } else {
+                    contrasena.type = 'password';
+                    confirmarContrasena.type = 'password';
+                }
+            });
+        </script>
     </main>
 </body>
 </html>

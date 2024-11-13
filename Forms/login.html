@@ -24,14 +24,25 @@
             <label for="contrasena">Contraseña</label>
             <input type="password" id="contrasena" name="contrasena" required autocomplete="current-password">
             
+            <!-- Checkbox para mostrar/ocultar contraseña -->
+            <input type="checkbox" id="mostrar-contrasena"> Mostrar Contraseña
+
             <button type="submit">Ingresar</button>
         </form>
 
         <p>¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
     </main>
 
-
-
+    <script>
+        document.getElementById('mostrar-contrasena').addEventListener('change', function() {
+            const contrasena = document.getElementById('contrasena');
+            if (this.checked) {
+                contrasena.type = 'text';
+            } else {
+                contrasena.type = 'password';
+            }
+        });
+    </script>
 
     <script type="module">
         // Importa los módulos de Firebase

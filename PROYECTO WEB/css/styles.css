@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #34495e; /* Fondo gris oscuro */
+    color: #ecf0f1; /* Texto claro */
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #e67e22; /* Enlaces en tono naranja */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #d35400; /* Enlaces en tono naranja más oscuro al pasar el ratón */
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    padding: 50px 0;
+}
+
+header h1 {
+    color: #ecf0f1; /* Texto claro */
+    font-size: 2.5em;
+}
+
+header p {
+    color: #bdc3c7; /* Texto gris claro */
+    font-size: 1.2em;
+}
+
+/* Menú de navegación */
+nav {
+    background-color: #333; /* Gris oscuro */
+}
+
+nav ul {
+    background-color: #34495e;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    margin: 0;
+}
+
+nav ul li {
+        margin: 0 15px;
+}
+
+nav ul li a {
+    display: flex; /* Para alinear texto e ícono */
+    align-items: center;
+    gap: 8px; /* Espacio entre ícono y texto */
+    background-color: #34495e;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: #FFD700; /* Dorado */
+}
+
+nav ul li a i {
+    font-size: 1.2rem; /* Tamaño del ícono */
+}
+
+/* Secciones */
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color:#263544;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+section p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Artículo dentro de secciones */
+article h3 {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+article p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    font-size: 0.9rem;
+}
+
+/* Estilos para formularios */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #263544;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+.centrar {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Estilos para las tarjetas de noticias */
+.news-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    background: #fefefe;
+}
+
+.news-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.news-card p {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.news-card a {
+    font-size: 0.9em;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.news-card a:hover {
+    text-decoration: underline;
+}
+
+/*Estilo para las noticias */
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+.container-noticias{
+    max-width: 1200px;
+    margin: auto;
+}
+#noticias header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#263544;
+    padding: 10px;
+    border-radius: 10px;
+}
+#noticias h1{
+    text-align: center;
+    color: #e67e22; /* Título en tono naranja */
+}
+#noticias nav{
+    background-color:#263544;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#noticias nav span{
+    display: inline-block;
+    background-color: #e67e22; /* Fondo en tono naranja */
+    color: #ecf0f1; /* Texto claro */
+    padding: 5px 10px;
+    border-radius: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#noticias nav span:hover{
+    background-color: #d35400; /* Fondo en tono naranja más oscuro al pasar el ratón */
+}
+#noticias header input{
+    padding: 5px 10px;
+    border: none;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+}
+#noticias header button{
+    border: none;
+    padding: 7px 10px;
+    border-radius: 30px;
+    border: 2px solid #ccc;
+}
+.container-noticias{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap:30px;
+    padding-bottom: 20px;
+}
+.container-noticias .item{
+    background-color: #34495e; /* Fondo gris oscuro */
+    color: #ecf0f1; /* Texto claro */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+.container-noticias .item:hover{
+    box-shadow: 0 0 10px 5px #e67e22; /* Sombra en tono naranja al pasar el ratón */
+}
+.container-noticias .item:hover h2{
+    text-decoration: underline;
+}
+.container-noticias .item .info_item{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.container-noticias .item img{
+    width: 100%;
+    border-radius: 10px;
+}
+#categorias{
+    background-color: #34495e;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+#busquedaCategoria header{
+    background-color:#263544;
+    color: #ecf0f1; /* Texto claro */
+    padding: 5px 10px;
+    border-radius: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.container-noticias #btnSiguiente{
+    cursor: pointer;
+    color: #e67e22; /* Botón en tono naranja */
+}
+.container-noticias #btnSiguiente:hover{
+    color: #d35400; /* Botón en tono naranja más oscuro al pasar el ratón */
+}
+.container-noticias #btnAtras{
+    cursor: pointer;
+    color: #e67e22; /* Botón en tono naranja */
+}
+.container-noticias #btnAtras:hover{
+    color: #d35400; /* Botón en tono naranja más oscuro al pasar el ratón */
+}
+
+/* Logo */
+#logo {
+    height: 50px; /* Ajusta la altura del logo según sea necesario */
+    width: auto; /* Mantiene la proporción del logo */
+    cursor: pointer;
+}
+
+#menu {
+    position: relative;
+    background-color: #34495e; /* Fondo del menú gris oscuro */
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Asegura que el logo y el menú estén separados */
+}
+
+#menu nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#menu nav ul li {
+    margin: 0 15px;
+}
+
+#menu nav ul li a {
+    color: #ecf0f1; /* Texto claro */
+    font-size: 1.2em;
+}
+
+#menu nav ul li a:hover {
+    color: #f39c12; /* Texto en tono naranja al pasar el ratón */
+}
+
+
+/*Grafica*/
+#chart {
+    width: 100%;
+    height: 500px;
+}
+
+
+#dataPanel {
+    width: 30%;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+select {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

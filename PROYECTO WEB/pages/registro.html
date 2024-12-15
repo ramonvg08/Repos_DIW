@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
 
         <!-- Agrega Firebase SDK -->
@@ -76,6 +76,24 @@
                 } else {
                     contrasena.type = 'password';
                     confirmarContrasena.type = 'password';
+                }
+            });
+        </script>
+
+        <!-- Registro de usuario -->
+        <script>
+            document.getElementById('registro-form').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const email = document.getElementById('correo').value;
+                const password = document.getElementById('contrasena').value;
+                try {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } catch (error) {
+                    if (error.code === 'auth/email-already-in-use') {
+                        console.error('El correo electrónico ya está en uso.');
+                    } else {
+                        console.error('Error en el registro:', error);
+                    }
                 }
             });
         </script>

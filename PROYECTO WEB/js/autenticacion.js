@@ -2,7 +2,7 @@
 
 import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { doc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { doc, setDoc, updateDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 // Registro de usuarios
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,28 +33,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Inicio de sesión
-    const loginForm = document.getElementById("form-login");
-    if (loginForm) {
-        loginForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const correo = document.getElementById("correo").value;
-            const contrasena = document.getElementById("contrasena").value;
+// Inicio de sesión
+const loginForm = document.getElementById("form-login");
+if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const correo = document.getElementById("correo").value;
+        const contrasena = document.getElementById("contrasena").value;
 
-            try {
-                const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
-                const user = userCredential.user;
+        try {
+            // Iniciar sesión con Firebase Auth
+            const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
+            const user = userCredential.user;
 
-                await updateDoc(doc(db, "usuarios", user.uid), {
+            // Referencia al documento del usuario
+            const docRef = doc(db, "usuarios", user.uid);
+
+            // Verificar si el documento existe
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                // Si existe, actualiza el campo 'ultimaSesion'
+                await updateDoc(docRef, {
                     ultimaSesion: serverTimestamp()
                 });
-                window.location.href = "../index.html";
-            } catch (error) {
-                console.error("Error en inicio de sesión:", error);
-                alert("Error: " + error.message);
+                console.log("Última sesión actualizada.");
+            } else {
+                // Si no existe, crea un nuevo documento
+                console.warn("Documento de usuario no encontrado. Creando uno nuevo.");
+                await setDoc(docRef, {
+                    correo: user.email,
+                    ultimaSesion: serverTimestamp()
+                });
+                console.log("Nuevo documento de usuario creado.");
             }
-        });
-    }
+
+            // Redirigir al usuario a la página principal
+            window.location.href = "../index.html";
+        } catch (error) {
+            console.error("Error en inicio de sesión:", error);
+            alert("Error: " + error.message);
+        }
+    });
+}
 
     const menu = document.getElementById('menu'); // Asegúrate de que el menú tenga este id
 

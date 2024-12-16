@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+
+        <!-- Enlace a CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Modak&family=Rubik+Puddles&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+
+        <!-- Agrega Firebase SDK -->
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+    
+    <script type="module" src="../js/firebase-config.js" defer></script>
+    <script type="module"src="../js/autenticacion.js" defer></script>
+
+    <header id="menuRegistro">
+        <a href="/index.html" class="logo">
+            <i style="font-family: 'Modak', cursive; font-size: 3rem;">!MarketMaker</i>
+        </a>    
+    </header>
+    <main>
+        <h1 class="centrar">Formulario de Registro</h1>
+        <form id="registro-form">
+            <!-- Aquí iremos añadiendo cada campo -->
+            <!-- Nombre completo -->
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <!-- Correo electronico (con validacion de formato)-->
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Introduce un correo electrónico válido">
+
+            <!-- Direccion-->
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required autocomplete="street-address">
+            
+            <!-- Control de edad -->
+            <label for="nacimiento">Año de Nacimiento:</label>
+            <input type="number" id="nacimiento" name="nacimiento" min="1900" max="2023" required>
+
+            <!-- Contraseña: -->
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required autocomplete="new-password">
+           
+            <!-- Confirmar Contraseña: -->
+            <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required autocomplete="new-password">
+            
+            <!-- Checkbox para mostrar/ocultar contraseña -->
+            <p id="mostrarContrasena">Mostrar contraseña <input type="checkbox" id="mostrar-contrasena"></p>
+             
+            <!-- Boton para enviar -->
+            <button type="submit">Registrarse</button>
+        </form>
+        <p class="centrar">¿Ya tienes cuenta? <a href="login.html">Inicia Sesión</a></p>
+
+
+        <!-- Mostrar y ocultar contraseña -->
+        <script>
+            document.getElementById('mostrar-contrasena').addEventListener('change', function() {
+                const contrasena = document.getElementById('contrasena');
+                const confirmarContrasena = document.getElementById('confirmar-contrasena');
+                if (this.checked) {
+                    contrasena.type = 'text';
+                    confirmarContrasena.type = 'text';
+                } else {
+                    contrasena.type = 'password';
+                    confirmarContrasena.type = 'password';
+                }
+            });
+        </script>
+
+        <!-- Registro de usuario -->
+        <script>
+            document.getElementById('registro-form').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const email = document.getElementById('correo').value;
+                const password = document.getElementById('contrasena').value;
+                try {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } catch (error) {
+                    if (error.code === 'auth/email-already-in-use') {
+                        console.error('El correo electrónico ya está en uso.');
+                    } else {
+                        console.error('Error en el registro:', error);
+                    }
+                }
+            });
+        </script>
+    </main>
+</body>
+</html>

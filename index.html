@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyecto web: Diseño de Interfaces Web y Lenguaje de Marcas">
+    <meta name="author" content="Ramon Valverde">
+    <title>!MarketMaker</title>
+    <!-- Enlace a CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Rubik+Puddles&display=swap" rel="stylesheet">   
+     <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Gráficas -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+    <!-- Enlaces a JavaScript -->
+    <script src="js/menuDesplegable.js" defer></script>
+    <script src="js/noticias.js" defer></script>
+    <script src="js/grafica.js" defer></script>
+    <script src="js/relojes.js" defer></script>
+    <script src="js/cookies.js" defer></script>
+
+
+    <!-- Enlace a P5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+
+    <!-- Enlace a Firebase -->
+    <script type="module" src="js/firebase-config.js" defer></script>
+    <script type="module" src="js/autenticacion.js" defer></script>
+
+</head>
+
+<body>
+    <header id="menu">
+            <a href="index.html" class="logo">
+                <i style="font-family: 'Modak', cursive; font-size: 3rem;">!M</i>
+            </a>
+            <div class="user-menu">
+              <i class="fas fa-user" id="user-icon"></i>
+              <div class="user-dropdown">
+                <a href="pages/login.html">Iniciar sesión</a>
+                <a href="pages/registro.html">Registrarse</a>
+              </div>
+            </div>
+    </header>
+
+    <div id="nombreWeb">        
+        <h1>!MarketMaker</h1>
+        <p>Explora el diseño y la funcionalidad</p>
+    </div>
+
+    <main>
+        <section id="multimedia">
+            <h2>Zonas Horarias</h2>
+            <div id="relojes-container"></div>
+        </section>
+
+        <section id="inicio">
+            <h2>Inicio</h2>
+            <p>Este es el contenido principal de la página.</p>
+        </section>
+
+        <section id="grafica">
+            <h2>Gráfica de Precios</h2>
+            <div id="chart"></div>
+        </section>
+
+        <section id="noticias">
+            <div class="container">
+                <h1>NOTICIAS</h1>
+                <header>
+                    <nav id="categorias">
+                        <span class="cat" onclick="buscar('Divisas')">Fórex</span>
+                        <span class="cat" onclick="buscar('Crypto')">Cripto</span>
+                        <span class="cat" onclick="buscar('Acciones')">Acciones</span>
+                        <span class="cat" onclick="buscar('Indices')">Índices</span>
+                        <span class="cat" onclick="buscar('Futuros')">Futuros</span>
+                    </nav>
+                    <div class="busqueda">
+                        <input type="text" placeholder="Qué desea buscar" id="busqueda">
+                        <button onclick="buscarTema()">Buscar</button>
+                    </div>
+                </header>
+
+
+                <div class="container-noticias"></div>
+            </div>
+        </section>
+
+        <section id="acerca">
+            <h2>Acerca</h2>
+            <article>
+                <h3>Nuestra Historia</h3>
+                <p>Conoce más sobre nuestro proyecto.</p>
+            </article>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="social-footer">
+            <div class="social-icons">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            <p>© 2024 !MarketMaker. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+                <!-- Aviso de Cookies -->
+    <dialog id="cookieConsent" class="cookie-consent">
+        <div class="cookie-consent-content">
+            <p>Este sitio web utiliza cookies para mejorar su experiencia. Al continuar navegando, acepta nuestro uso de cookies.</p>
+            <button id="acceptCookies" class="cookie-consent-button">Aceptar</button>
+        </div>
+    </dialog>
+
+</body>
+
+</html>

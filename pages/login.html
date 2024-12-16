@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+        <!-- Enlace a CSS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Modak&family=Rubik+Puddles&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <!-- Agrega Firebase SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <script type="module" src="../js/firebase-config.js" defer></script>
+    <script type="module" src="../js/autenticacion.js" defer></script>
+
+    <header id="menuInicio">
+        <a href="/index.html" class="logo">
+            <i style="font-family: 'Modak', cursive; font-size: 3rem;">!MarketMaker</i>
+        </a>    
+    </header>
+    <main>
+        <h1 class="centrar">Iniciar Sesión</h1>
+        <form id="form-login">
+            <label for="correo">Correo Electrónico</label>
+            <input type="email" id="correo" name="correo" required autocomplete="username">
+            
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" required autocomplete="current-password">
+            
+            <!-- Checkbox para mostrar/ocultar contraseña -->
+            <p id="mostrarContrasena">Mostrar contraseña <input type="checkbox" id="mostrar-contrasena"></p>
+
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <p class="centrar">¿No tienes cuenta? <a href="registro.html">Regístrate</a></p>
+    </main>
+    <!-- <div id="menu" hidden></div> -->
+    <script>
+        document.getElementById('mostrar-contrasena').addEventListener('change', function() {
+            const contrasena = document.getElementById('contrasena');
+            if (this.checked) {
+                contrasena.type = 'text';
+            } else {
+                contrasena.type = 'password';
+            }
+        });
+    </script>
+
+    <script type="module">
+        // Importa los módulos de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+        import { getFirestore, doc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCMtuCG64hOrxhY6eHcWU8YOv2ELSlAEAA",
+            authDomain: "proyectoformulario-ramon.firebaseapp.com",
+            projectId: "proyectoformulario-ramon",
+            storageBucket: "proyectoformulario-ramon.firebasestorage.app",
+            messagingSenderId: "428212006493",
+            appId: "1:428212006493:web:65f930cdd0ce53884467b4"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Verifica el inicio de sesion
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("form-login");
+            if (loginForm) {
+                loginForm.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const correo = document.getElementById("correo").value;
+                    const contrasena = document.getElementById("contrasena").value;
+
+                    try {
+                        const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
+                        const user = userCredential.user;
+
+                        await updateDoc(doc(db, "usuarios", user.uid), {
+                            ultimaSesion: serverTimestamp()
+                        });
+
+                        alert("Inicio de sesión exitoso");
+                    } catch (error) {
+                        console.error("Error en el inicio de sesión:", error);
+                        alert("Error: " + error.message);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -301,36 +301,16 @@ form button:hover {
     color: #d35400; /* Botón en tono naranja más oscuro al pasar el ratón */
 }
 
-/* Logo */
-#logo {
-    height: 50px; /* Ajusta la altura del logo según sea necesario */
-    width: auto; /* Mantiene la proporción del logo */
-    cursor: pointer;
-    position: fixed; /* Fija el logo en la parte superior */
-    top: 10px; /* Ajusta la distancia desde la parte superior */
-    left: 10px; /* Ajusta la distancia desde la izquierda */
-    z-index: 1000; /* Asegura que el logo esté por encima de otros elementos */
-}
 
 
-.q_logo, 
-.q_logo a{
-visibility:visible!important;
-position: static!important;
-}
 
-.q_logo img{
-top:0px;
-}
-
-
-#menu {
+/* #menu {
     position: relative;
-    background-color: #34495e; /* Fondo del menú gris oscuro */
+    background-color: #34495e; /* Fondo del menú gris oscuro 
     padding: 10px 0;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Asegura que el logo y el menú estén separados */
+    justify-content: space-between; /* Asegura que el logo y el menú estén separados
 }
 
 #menu nav ul {
@@ -346,13 +326,99 @@ top:0px;
 }
 
 #menu nav ul li a {
-    color: #ecf0f1; /* Texto claro */
+    color: #ecf0f1; /* Texto claro 
     font-size: 1.2em;
 }
 
 #menu nav ul li a:hover {
-    color: #f39c12; /* Texto en tono naranja al pasar el ratón */
-}
+    color: #f39c12; /* Texto en tono naranja al pasar el ratón
+} */
+
+#menu {
+    position: relative;
+    background-color: #34495e;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #logo {
+    height: 100px;
+    width: auto;
+    cursor: pointer;
+  }
+  
+  #menu nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #menu nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  #menu nav ul li {
+    margin: 0 15px;
+  }
+  
+  #menu nav ul li a {
+    color: #ecf0f1;
+    font-size: 1.2em;
+    text-decoration: none;
+  }
+  
+  #menu nav ul li a:hover {
+    color: #f39c12;
+  }
+  
+  .user-menu {
+    position: relative;
+  }
+  
+  #user-icon {
+    color: #ecf0f1;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  #user-icon:hover {
+    color: #f39c12;
+  }
+  
+  .user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #34495e;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .user-dropdown a {
+    color: #ecf0f1;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .user-dropdown a:hover {
+    color: #f39c12;
+    background-color: #2c3e50;
+  }
+  
+  .user-menu:hover .user-dropdown {
+    display: block;
+  }
+  
+  
+
 
 
 /*Grafica*/
@@ -427,3 +493,33 @@ select {
     margin: 20px 0; /* Separación superior/inferior */
   }
   
+
+/*Fuente de logo*/
+.modak-regular {
+    font-family: "Modak", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem ;
+  }
+
+
+  @keyframes metallicShine {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+#nombreWeb {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-align: center;
+    background: linear-gradient(90deg, white, #e67e22, white);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: metallicShine 3s ease-out 1;
+}

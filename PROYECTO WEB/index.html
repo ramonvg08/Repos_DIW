@@ -8,7 +8,10 @@
     <meta name="author" content="Ramon Valverde">
     <title>!MarketMaker</title>
     <!-- Enlace a CSS -->
-    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Rubik+Puddles&display=swap" rel="stylesheet">   
+     <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap' rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -17,6 +20,7 @@
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 
     <!-- Enlaces a JavaScript -->
+    <script src="js/menuDesplegable.js" defer></script>
     <script src="js/noticias.js" defer></script>
     <script src="js/grafica.js" defer></script>
     <script src="js/relojes.js" defer></script>
@@ -33,26 +37,23 @@
 </head>
 
 <body>
-    <div id="menu">
-        <div id="logo">
-            <a href="index.html">
-                <img src="/assets/images/logo.png" alt="Logo de la Web">
+    <header id="menu">
+            <a href="index.html" class="logo">
+                <i style="font-family: 'Modak', cursive; font-size: 3rem;">!M</i>
             </a>
-        </div>
-        <nav>
-            <ul>
-                <li></li>
-                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                <li><a href="pages/registro.html"><i class="fas fa-user-plus"></i> Registro</a></li>
-            </ul>
-        </nav>
-    </div>
+            <div class="user-menu">
+              <i class="fas fa-user" id="user-icon"></i>
+              <div class="user-dropdown">
+                <a href="pages/login.html">Iniciar sesión</a>
+                <a href="pages/registro.html">Registrarse</a>
+              </div>
+            </div>
+    </header>
 
-    <header>
+    <div id="nombreWeb">        
         <h1>!MarketMaker</h1>
         <p>Explora el diseño y la funcionalidad</p>
-    </header>
+    </div>
 
     <main>
         <section id="multimedia">

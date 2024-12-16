@@ -33,49 +33,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// Inicio de sesión
-const loginForm = document.getElementById("form-login");
-if (loginForm) {
-    loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const correo = document.getElementById("correo").value;
-        const contrasena = document.getElementById("contrasena").value;
+    // Inicio de sesión
+    const loginForm = document.getElementById("form-login");
+    if (loginForm) {
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const correo = document.getElementById("correo").value;
+            const contrasena = document.getElementById("contrasena").value;
 
-        try {
-            // Iniciar sesión con Firebase Auth
-            const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
-            const user = userCredential.user;
+            try {
+                // Iniciar sesión con Firebase Auth
+                const userCredential = await signInWithEmailAndPassword(auth, correo, contrasena);
+                const user = userCredential.user;
 
-            // Referencia al documento del usuario
-            const docRef = doc(db, "usuarios", user.uid);
+                // Referencia al documento del usuario
+                const docRef = doc(db, "usuarios", user.uid);
 
-            // Verificar si el documento existe
-            const docSnap = await getDoc(docRef);
+                // Verificar si el documento existe
+                const docSnap = await getDoc(docRef);
 
-            if (docSnap.exists()) {
-                // Si existe, actualiza el campo 'ultimaSesion'
-                await updateDoc(docRef, {
-                    ultimaSesion: serverTimestamp()
-                });
-                console.log("Última sesión actualizada.");
-            } else {
-                // Si no existe, crea un nuevo documento
-                console.warn("Documento de usuario no encontrado. Creando uno nuevo.");
-                await setDoc(docRef, {
-                    correo: user.email,
-                    ultimaSesion: serverTimestamp()
-                });
-                console.log("Nuevo documento de usuario creado.");
+                if (docSnap.exists()) {
+                    // Si existe, actualiza el campo 'ultimaSesion'
+                    await updateDoc(docRef, {
+                        ultimaSesion: serverTimestamp()
+                    });
+                    console.log("Última sesión actualizada.");
+                } else {
+                    // Si no existe, crea un nuevo documento
+                    console.warn("Documento de usuario no encontrado. Creando uno nuevo.");
+                    await setDoc(docRef, {
+                        correo: user.email,
+                        ultimaSesion: serverTimestamp()
+                    });
+                    console.log("Nuevo documento de usuario creado.");
+                }
+
+                // Redirigir al usuario a la página principal
+                window.location.href = "../index.html";
+            } catch (error) {
+                console.error("Error en inicio de sesión:", error);
+                alert("Error: " + error.message);
             }
-
-            // Redirigir al usuario a la página principal
-            window.location.href = "../index.html";
-        } catch (error) {
-            console.error("Error en inicio de sesión:", error);
-            alert("Error: " + error.message);
-        }
-    });
-}
+        });
+    }
 
     const menu = document.getElementById('menu'); // Asegúrate de que el menú tenga este id
 
@@ -84,14 +84,16 @@ if (loginForm) {
             if (user) {
                 // Usuario conectado
                 menu.innerHTML = `
-                <nav>
-                    <ul>
-                        <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="../pages/perfil.html"><i class="fas fa-user"></i> Perfil</a></li>
-                        <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
-                    </ul>
-                </nav>
+                <a href="index.html" class="logo"><i id="logoLetra" style="font-family: 'Modak', cursive; font-size: 3rem">!M</i></a>
+                <div class="user-menu">
+                    <i class="fas fa-user" id="user-icon"></i>
+                    <div class="user-dropdown">
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </div>
+                </div>
             `;
+
+
 
                 // Botón de cerrar sesión
                 document.getElementById('logout-btn').addEventListener('click', () => {
@@ -105,13 +107,14 @@ if (loginForm) {
             } else {
                 // Usuario no conectado
                 menu.innerHTML = `
-                <nav>
-                    <ul>
-                        <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="../pages/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                        <li><a href="../pages/registro.html"><i class="fas fa-user-plus"></i> Registro</a></li>
-                    </ul>
-                </nav>
+                <a href="index.html" class="logo"><i id="logoLetra" style="font-family: 'Modak', cursive; font-size: 3rem">!M</i></a>
+                <div class="user-menu">
+                    <i class="fas fa-user" id="user-icon"></i>
+                    <div class="user-dropdown">
+                        <a href="pages/login.html">Iniciar sesión</a>
+                        <a href="pages/registro.html">Registrarse</a>
+                    </div>
+                </div>
             `;
             }
         });
